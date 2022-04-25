@@ -192,7 +192,7 @@ class Scraper:
     @staticmethod
     def fromWebMaker(number,format,all,ws):
         from backend.observer import Observer as ob
-        path = './frontend/dist/static/'
+        path = './backend/dist/static/'
         observer = ob(ws)
         scraper = Scraper(number,format,all)
         scraper.addObserver(observer)
