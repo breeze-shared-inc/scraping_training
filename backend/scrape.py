@@ -204,7 +204,7 @@ class Scraper:
 
         return article_list
 
-    def makeDataFrame(self, article_list: list):
+    def makeDataFrame(self, article_list: list) -> pd.DataFrame:
         """
         list -> 吐き出し用データ(csv,excel)整形処理
 
@@ -231,7 +231,7 @@ class Scraper:
             ]
         ).set_index('記事URL')
 
-    def maxArticle(self):
+    def maxArticle(self) -> int:
         """
         最大件数の取得
 
