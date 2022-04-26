@@ -141,7 +141,6 @@ class Scraper:
 
         return article_list
 
-    # 吐き出し用データ整形処理
     def makeDataFrame(self,article_list: list) -> pd.DataFrame:
         """
         list -> 吐き出し用データ(csv,excel)整形処理
@@ -170,7 +169,6 @@ class Scraper:
             ]
         ).set_index('記事URL')
 
-    # 最大件数の取得
     def maxArticle(self) -> int:
         """
         最大件数の取得
@@ -197,7 +195,6 @@ class Scraper:
 
         return max_count
 
-    # exportの総合受付
     def export(self, article_data_frame: pd.DataFrame, file_path = '') -> None:
         """
         exportの総合受付
@@ -211,39 +208,10 @@ class Scraper:
             保存先のパス
         """
         if self.format == 'csv':
-            self.__csvMaker(article_data_frame,file_path)
+            article_data_frame.to_csv(file_path + 'result.csv')
+
         elif self.format == 'excel':
-            self.__excelMaker(article_data_frame,file_path)
-
-
-    def __csvMaker(self, article_data_frame: pd.DataFrame, file_path = '') -> None:
-        """
-        csv吐き出しメソッド
-
-        Parameters
-        ----------
-        article_data_frame: Dataframe
-            データフレーム整形後の記事データ
-
-        file_path: str
-            保存先のパス
-        """
-        article_data_frame.to_csv(file_path + 'result.csv')
-
-
-    def __excelMaker(self, article_data_frame: pd.DataFrame, file_path = '') -> None:
-        """
-        Excel吐き出しメソッド
-
-        Parameters
-        ----------
-        article_data_frame: Dataframe
-            データフレーム整形後の記事データ
-
-        file_path: str
-            保存先のパス
-        """
-        article_data_frame.to_excel(file_path + 'result.xlsx')
+            article_data_frame.to_excel(file_path + 'result.xlsx')
 
 
     @staticmethod
