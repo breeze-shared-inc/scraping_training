@@ -29,7 +29,7 @@ class Scraper:
         拡張子(csv or excel)
     """
 
-    def __init__(self, count: int, format: str, all_flg: bool):
+    def __init__(self, count: int, format: str, all_flg: bool) -> None:
         """
         Parameters
         ----------
@@ -48,7 +48,7 @@ class Scraper:
         self.count: int = count
         self.format: str = format
 
-    def setURLList(self,count: int):
+    def setURLList(self,count: int) -> list:
         """
         取得対象のURLリストを取得
 
@@ -83,7 +83,7 @@ class Scraper:
         self.max_count = len(url_list)
         return url_list
 
-    def getArticleData(self,url: str):
+    def getArticleData(self,url: str) -> list[str, str, str, int, str, str, str]:
         """
         記事の詳細データを取得
 
@@ -118,7 +118,7 @@ class Scraper:
 
         return article_data
 
-    def getArticleIterator(self,count: int):
+    def getArticleIterator(self,count: int) -> list[list[str, str, str, int, str, str, str]]:
         """
         指定した記事数分スクレピングを実施する
 
@@ -142,7 +142,7 @@ class Scraper:
         return article_list
 
     # 吐き出し用データ整形処理
-    def makeDataFrame(self,article_list: list):
+    def makeDataFrame(self,article_list: list) -> pd.DataFrame:
         """
         list -> 吐き出し用データ(csv,excel)整形処理
 
@@ -171,7 +171,7 @@ class Scraper:
         ).set_index('記事URL')
 
     # 最大件数の取得
-    def maxArticle(self):
+    def maxArticle(self) -> int:
         """
         最大件数の取得
 
@@ -198,7 +198,7 @@ class Scraper:
         return max_count
 
     # exportの総合受付
-    def export(self, article_data_frame: pd.DataFrame, file_path = ''):
+    def export(self, article_data_frame: pd.DataFrame, file_path = '') -> None:
         """
         exportの総合受付
 
@@ -216,7 +216,7 @@ class Scraper:
             self.__excelMaker(article_data_frame,file_path)
 
 
-    def __csvMaker(self, article_data_frame: pd.DataFrame, file_path = ''):
+    def __csvMaker(self, article_data_frame: pd.DataFrame, file_path = '') -> None:
         """
         csv吐き出しメソッド
 
@@ -231,7 +231,7 @@ class Scraper:
         article_data_frame.to_csv(file_path + 'result.csv')
 
 
-    def __excelMaker(self, article_data_frame: pd.DataFrame, file_path = ''):
+    def __excelMaker(self, article_data_frame: pd.DataFrame, file_path = '') -> None:
         """
         Excel吐き出しメソッド
 
@@ -247,7 +247,7 @@ class Scraper:
 
 
     @staticmethod
-    def fromCliMaker(count: int, format='excel', all_flg=False):
+    def fromCliMaker(count: int, format='excel', all_flg=False) -> None:
         """
         記事取得から吐き出しまで一気に実行する関数。
         利用者は基本的にこのメソッドのみ知っていれば問題なし。
