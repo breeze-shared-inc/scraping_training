@@ -10,7 +10,7 @@
 |pip3    | 22.0.4    |
 |make    | 3.81      |
 
-## 使い方
+## 使い方（web）
 初期設定
 ```bash
 $ make install
@@ -24,4 +24,16 @@ $ make up
 サーバー更新
 ```bash
 $ make reload
+```
+
+## 使い方(Cli)
+5件のエクセルデータ取得する
+```bash
+$ python3 backend/scrape.py 5
+```
+
+
+10件のcsvデータ取得する
+```bash
+$ python3 backend/scrape.py 10 'csv'
 ```
